@@ -9,31 +9,36 @@ import java.util.Arrays;
 public class ArraySum {
     public static void main(String[] args) {
         Path p = Paths.get("arraySumConfig.txt");
-
         try {
             String lines = Files.readString(p);
-
-            String[] line = lines.split(",");
-
-            System.out.println(sum1(line));
-            System.out.println(sum2(line));
-
+            if (lines.equals("")) {
+                System.out.println("The array is empty");
+            } else {
+                String[] line = lines.split(",");
+                int[] array = Arrays.stream(line).mapToInt(Integer::parseInt).toArray();
+                System.out.println(sumManual(array));
+                System.out.println(sumFunction(array));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-     public static int sum1(String[] a) {
-        int[] array = Arrays.stream(a).mapToInt(Integer::parseInt).toArray();
+    public static int sumManual(int[] a) throws IllegalArgumentException {
+        if (a.length == 0) {
+            throw new IllegalArgumentException("The array is empty");
+        }
         int sum = 0;
-        for (int i : array) {
+        for (int i : a) {
             sum += i;
         }
         return sum;
     }
 
-     public static int sum2(String[] a) {
-        int[] array = Arrays.stream(a).mapToInt(Integer::parseInt).toArray();
-         return Arrays.stream(array).sum();
+    public static int sumFunction(int[] a) throws IllegalArgumentException {
+        if (a.length == 0) {
+            throw new IllegalArgumentException("The array is empty");
+        }
+        return Arrays.stream(a).sum();
     }
 }

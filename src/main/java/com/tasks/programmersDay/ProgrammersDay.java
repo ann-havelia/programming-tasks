@@ -10,15 +10,13 @@ public class ProgrammersDay {
 
     public static void main(String[] args) {
         Path p = Paths.get("programDayConfig.txt");
-
         try {
             int year = Integer.parseInt(Files.readString(p));
-
             System.out.println(returnDay(year));
-
-
         } catch (IOException e) {
             e.printStackTrace();
+        }catch (NumberFormatException e){
+            System.out.println("The config file contains missing data. Please, add data and try again.");
         }
     }
 
@@ -27,7 +25,6 @@ public class ProgrammersDay {
         cal.set(year, Calendar.JANUARY, 1);
         cal.add(Calendar.DATE, 255);
         int day = cal.get(Calendar.DAY_OF_WEEK);
-
         String weekDay = "";
         switch (day) {
             case Calendar.SUNDAY:
@@ -51,7 +48,6 @@ public class ProgrammersDay {
             case Calendar.SATURDAY:
                 weekDay = "Saturday";
                 break;
-
         }
         return weekDay;
     }

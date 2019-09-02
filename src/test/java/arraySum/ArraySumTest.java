@@ -7,12 +7,28 @@ import org.junit.Test;
 public class ArraySumTest {
     @Test
     public void testArraySum() {
-        String[] str = {"2", "3", "6", "5","11"};
-        Assert.assertEquals(27, ArraySum.sum1(str));
-        Assert.assertEquals(27, ArraySum.sum2(str));
-        String[] str1 = {"2"};
-        Assert.assertEquals(2, ArraySum.sum1(str1));
-        Assert.assertEquals(2, ArraySum.sum2(str1));
+        int[] array = {2, 3, 6, 5, 11};
+        Assert.assertEquals(27, ArraySum.sumManual(array));
+        Assert.assertEquals(27, ArraySum.sumFunction(array));
+    }
+
+    @Test
+    public void testArraySumOneValue() {
+        int[] array = {2};
+        Assert.assertEquals(2, ArraySum.sumManual(array));
+        Assert.assertEquals(2, ArraySum.sumFunction(array));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyArraySumManual() {
+        int[] array = {};
+        ArraySum.sumManual(array);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyArraySumFunc() {
+        int[] array = {};
+        ArraySum.sumFunction(array);
     }
 
 }

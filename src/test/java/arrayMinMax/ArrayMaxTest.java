@@ -6,13 +6,28 @@ import org.junit.Test;
 
 public class ArrayMaxTest {
     @Test
-    public void testArrayMax(){
-        String [] str = {"2","3","6","5"};
-        Assert.assertEquals(6, ArrayMax.maxNumber1(str));
-        Assert.assertEquals(6, ArrayMax.maxNumber2(str));
-        String [] str1 = {"1"};
-        Assert.assertEquals(1,ArrayMax.maxNumber1(str1));
-        Assert.assertEquals(1,ArrayMax.maxNumber2(str1));
+    public void testArrayMax() {
+        int[] testArray = {2, 3, 18, 5};
+        Assert.assertEquals(18, ArrayMax.maxNumberWithFunc(testArray));
+        Assert.assertEquals(18, ArrayMax.maxNumberWithLoop(testArray));
+    }
 
+    @Test
+    public void testArrayMaxOneValue() {
+        int[] testArray = {18};
+        Assert.assertEquals(18, ArrayMax.maxNumberWithFunc(testArray));
+        Assert.assertEquals(18, ArrayMax.maxNumberWithLoop(testArray));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyArrayMaxFunc() {
+        int[] testArray = {};
+        ArrayMax.maxNumberWithFunc(testArray);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyArrayMaxLoop() {
+        int[] testArray = {};
+        ArrayMax.maxNumberWithLoop(testArray);
     }
 }

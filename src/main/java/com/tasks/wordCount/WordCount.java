@@ -8,15 +8,14 @@ import java.nio.file.Paths;
 public class WordCount {
     public static void main(String[] args) {
         Path p = Paths.get("wordCountConfig.txt");
-
         try {
             String sentence = Files.readAllLines(p).get(0);
             String word = Files.readAllLines(p).get(1);
-
             System.out.println(count(sentence, word));
-
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("The data is missing from the config file. Please, add needed data and try again. " + e);
         }
     }
 
@@ -29,5 +28,4 @@ public class WordCount {
             }
         return count;
     }
-
 }

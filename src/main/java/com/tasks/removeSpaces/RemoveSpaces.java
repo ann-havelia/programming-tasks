@@ -8,19 +8,14 @@ import java.nio.file.Paths;
 public class RemoveSpaces {
     public static void main(String[] args) {
         Path p = Paths.get("removeSpaceConfig.txt");
-
         try {
             String str = Files.readString(p);
-
             System.out.println(removeSpaces(str));
             System.out.println(removeSpaces1(str));
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public static String removeSpaces(String str) {
         StringBuilder noSpaces = new StringBuilder();

@@ -9,40 +9,41 @@ import java.util.Arrays;
 public class ArrayMin {
     public static void main(String[] args) {
         Path p = Paths.get("arrayMinMaxConfig.txt");
-
         try {
             String lines = Files.readString(p);
-            String[] line = lines.split(",");
-
-            minNumber1(line);
-            minNumber2(line);
-
+            if (lines.equals("")) {
+                System.out.println("The array is empty");
+            } else {
+                String[] line = lines.split(",");
+                int[] num = Arrays.stream(line).mapToInt(Integer::parseInt).toArray();
+                System.out.println("The min number in the array is " + minNumberWithFunc(num));
+                System.out.println("The min number in the array is " + minNumberWithLoop(num));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public static int minNumber1(String[] a) {
-        int[] num = Arrays.stream(a).mapToInt(Integer::parseInt)
-                .toArray();
-        Arrays.sort(num);
-        return num[0];
-    }
-
-    public static int minNumber2(String[] a) {
-        int[] num = Arrays.stream(a).mapToInt(Integer::parseInt)
-                .toArray();
-
-        int minNumber = num[0];
-
-        for (int i : num) {
-            if (i < minNumber) {
-                minNumber = i;
-            }
+    public static int minNumberWithFunc(int[] a) throws IllegalArgumentException {
+        if (a.length == 0) {
+            throw new IllegalArgumentException("The array is empty");
         }
-        return minNumber;
+        Arrays.sort(a);
+        return a[0];
+    }
 
+    public static int minNumberWithLoop(int[] a) throws IllegalArgumentException {
+        if (a.length == 0) {
+            throw new IllegalArgumentException("The array is empty");
+        } else {
+            int maxNumber = a[0];
+            for (int i : a) {
+                if (i < maxNumber) {
+                    maxNumber = i;
+                }
+            }
+            return maxNumber;
+        }
     }
 }
 

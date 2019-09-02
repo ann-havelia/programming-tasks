@@ -6,20 +6,38 @@ import org.junit.Test;
 
 public class PalindromeTest {
     @Test
-    public void testPalindrome(){
-        String word = "robot";
-        Assert.assertFalse(Palindrome.palindromeCheck(word));
-        String word1="kofok";
-        Assert.assertTrue(Palindrome.palindromeCheck(word1));
-        String word2="ggggGGgg";
-        Assert.assertTrue(Palindrome.palindromeCheck(word2));
-        String num="011110";
-        Assert.assertTrue(Palindrome.palindromeCheck(num));
-        String letter = "v";
-        Assert.assertTrue(Palindrome.palindromeCheck(letter));
-        String empty = " ";
-        Palindrome.palindromeCheck(empty);
+    public void testPalindrome() {
+        String word = "kofok";
+        Assert.assertTrue(Palindrome.palindromeCheck(word));
     }
 
+    @Test
+    public void testNotPalindrome() {
+        String word = "robot";
+        Assert.assertFalse(Palindrome.palindromeCheck(word));
+    }
 
+    @Test
+    public void testPalindromeIgnoreCase() {
+        String word = "ggggGGgg";
+        Assert.assertTrue(Palindrome.palindromeCheck(word));
+    }
+
+    @Test
+    public void testPalindromenumbers() {
+        String numbers = "0120210";
+        Assert.assertTrue(Palindrome.palindromeCheck(numbers));
+    }
+
+    @Test
+    public void testPalindromeChar() {
+        String letter = "v";
+        Assert.assertTrue(Palindrome.palindromeCheck(letter));
+    }
+
+    @Test
+    public void testEmpty() {
+        String empty = " ";
+        Assert.assertTrue(Palindrome.palindromeCheck(empty));
+    }
 }
